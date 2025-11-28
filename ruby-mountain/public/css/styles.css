@@ -27,6 +27,7 @@ body {
   margin: 0;
   font-family: "Inter", system-ui, sans-serif;
   color: var(--text-main);
+  background-color: --bg-page;
   background-color: var(--bg-page);
   line-height: 1.6;
 }
@@ -290,7 +291,9 @@ h1, h2, h3, h4 {
   gap: 0.75rem;
 }
 
-/* Buttons */
+/* =========================
+   BUTTONS
+   ========================= */
 
 .btn {
   display: inline-flex;
@@ -488,7 +491,7 @@ h1, h2, h3, h4 {
 }
 
 /* =========================
-   PROJECTS PAGE
+   PROJECTS PAGE FILTERS
    ========================= */
 
 .projects-filter {
@@ -577,6 +580,44 @@ h1, h2, h3, h4 {
   font-size: 1.5rem;
   padding: 0.5rem 0.75rem 0 0;
   cursor: pointer;
+}
+
+/* =========================
+   CONTACT FORM
+   ========================= */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.form-group input,
+.form-group textarea {
+  border-radius: 6px;
+  border: 1px solid #c9b8a0;
+  padding: 0.5rem 0.6rem;
+  font: inherit;
+  background-color: #fefbf7;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: 2px solid var(--dune);
+  outline-offset: 1px;
+}
+
+.form-status {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }
 
 /* =========================
