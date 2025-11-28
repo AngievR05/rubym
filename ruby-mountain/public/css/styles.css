@@ -52,6 +52,7 @@ h1, h2, h3, h4 {
   color: #34281e;
 }
 
+
 /* Layout helper */
 
 .section {
@@ -308,7 +309,7 @@ h1, h2, h3, h4 {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--dune), var(--casa));
+  background: linear-gradient(135deg, var(--verde), var(--clay));
   color: #fff;
 }
 
@@ -643,6 +644,7 @@ h1, h2, h3, h4 {
 .footer__col h3,
 .footer__col h4 {
   margin-bottom: 0.8rem;
+  color: var(--clay)
 }
 
 .footer__links {
