@@ -1,237 +1,4 @@
-// =========================
-// LANGUAGE SETUP
-// =========================
-
-const translations = {
-  en: {
-    "top-phone-label": "Phone",
-    "top-email-label": "Email",
-    "language-label": "Language",
-    "brand-tagline": "Construction & Maintenance",
-
-    "nav-home": "Home",
-    "nav-about": "About",
-    "nav-services": "Services",
-    "nav-projects": "Projects",
-    "nav-contact": "Contact",
-
-    "hero-heading": "Timber homes and lodges built to last.",
-    "hero-sub":
-      "Ruby Mountain specialises in timber construction, renovations and maintenance across Bela Bela and surrounds.",
-    "hero-cta-primary": "Request a quote",
-    "hero-cta-secondary": "View recent projects",
-
-    "about-heading": "About Ruby Mountain",
-    "about-body":
-      "With over 20 years of industry experience, Ruby Mountain Construction & Maintenance delivers new builds, alterations and ongoing maintenance for lodges and private homes.",
-    "about-body-2":
-      "From site preparation to final finishes, we manage the full process with a focus on quality workmanship and honest communication.",
-
-    "stat-years": "years experience",
-    "stat-projects": "completed projects",
-    "stat-repeat": "repeat & referral work",
-    "stat-registered": "registered builder",
-
-    "services-heading": "What we do",
-    "services-sub":
-      "From new timber lodges to general maintenance, Ruby Mountain covers the full scope of construction services.",
-
-    "service-construction-title": "Construction",
-    "service-construction-body":
-      "New private dwellings, lodges and structures built with timber, brick and stone.",
-    "service-alterations-title": "Building alterations",
-    "service-alterations-body":
-      "Extensions, decks and interior reconfiguration to upgrade existing buildings.",
-    "service-civil-title": "Civil works",
-    "service-civil-body":
-      "Earthworks, foundations, paving and related civil construction.",
-    "service-project-title": "Project management",
-    "service-project-body":
-      "Coordinating contractors, timelines and budgets from start to finish.",
-    "service-maintenance-title": "General maintenance",
-    "service-maintenance-body":
-      "Ongoing care, repairs and protective treatments for timber and structures.",
-    "service-rental-title": "Equipment & vehicle rental",
-    "service-rental-body":
-      "Hiring of construction equipment and vehicles with experienced operators.",
-    "service-labour-title": "Supply of labour",
-    "service-labour-body":
-      "Skilled teams for short and long-term construction projects.",
-    "service-steel-title": "Steel structures & storage units",
-    "service-steel-body":
-      "Design and construction of steel structures, sheds and storage units.",
-
-    "home-projects-heading": "Recent projects",
-    "home-projects-sub":
-      "A selection of current and completed work. View the full catalogue on the projects page.",
-    "home-projects-link": "View all projects →",
-
-    "cta-heading": "Ready to start your project?",
-    "cta-body":
-      "Share your plans and we’ll arrange a site visit to discuss ideas, budgets and timelines.",
-    "cta-button": "Contact us",
-
-    "footer-about":
-      "Construction & Maintenance based in Bela Bela, specialising in timber homes, lodges and renovations.",
-    "footer-contact-heading": "Contact",
-    "footer-links-heading": "Quick links",
-    "footer-link-services": "Services",
-    "footer-link-projects": "Projects",
-    "footer-link-quote": "Request a quote",
-
-    "projects-page-heading": "Projects",
-    "projects-page-sub":
-      "Explore our current and completed projects. Filter by type and click any project for more details and photos.",
-    "projects-filter-all": "All",
-    "projects-filter-new": "New dwellings",
-    "projects-filter-lodge": "Lodges",
-    "projects-filter-reno": "Alterations & decks",
-
-    // Contact form messages
-    "contact-validation": "Please fill in all required fields.",
-    "contact-sending": "Sending…",
-    "contact-success": "Thank you, we have received your message.",
-    "contact-error":
-      "Something went wrong. Please phone or email us directly."
-  },
-
-  af: {
-    "top-phone-label": "Foon",
-    "top-email-label": "E-pos",
-    "language-label": "Taal",
-    "brand-tagline": "Konstruksie & Instandhouding",
-
-    "nav-home": "Tuis",
-    "nav-about": "Oor ons",
-    "nav-services": "Dienste",
-    "nav-projects": "Projekte",
-    "nav-contact": "Kontak",
-
-    "hero-heading": "Houthuise en lodges wat lank hou.",
-    "hero-sub":
-      "Ruby Mountain spesialiseer in houtkonstruksie, aanbouings en instandhouding in Bela Bela en omgewing.",
-    "hero-cta-primary": "Versoek ’n kwotasie",
-    "hero-cta-secondary": "Sien onlangse projekte",
-
-    "about-heading": "Oor Ruby Mountain",
-    "about-body":
-      "Met meer as 20 jaar ondervinding bied Ruby Mountain Construction & Maintenance nuwe geboue, aanbouings en deurlopende instandhouding vir lodges en privaat huise.",
-    "about-body-2":
-      "Ons bestuur die hele proses – van terreinvoorbereiding tot afwerkings – met fokus op kwaliteit vakmanskap en eerlike kommunikasie.",
-
-    "stat-years": "jaar ervaring",
-    "stat-projects": "voltooide projekte",
-    "stat-repeat": "herhaal- & verwysingswerk",
-    "stat-registered": "geregistreerde bouer",
-
-    "services-heading": "Wat ons doen",
-    "services-sub":
-      "Van nuwe houtlodges tot algemene instandhouding – Ruby Mountain dek die volle spektrum van konstruksiedienste.",
-
-    "service-construction-title": "Konstruksie",
-    "service-construction-body":
-      "Nuwe privaat wonings, lodges en strukture gebou met hout, baksteen en klip.",
-    "service-alterations-title": "Gebou-wysigings",
-    "service-alterations-body":
-      "Aanbouings, dekke en uitlegveranderinge om bestaande geboue op te gradeer.",
-    "service-civil-title": "Siviele werke",
-    "service-civil-body":
-      "Grondwerke, fondasies, plaveisel en verwante siviele konstruksie.",
-    "service-project-title": "Projekbestuur",
-    "service-project-body":
-      "Koördinering van kontrakteurs, tydlyne en begrotings van begin tot einde.",
-    "service-maintenance-title": "Algemene instandhouding",
-    "service-maintenance-body":
-      "Deurlopende sorg, herstelwerk en beskermende behandelings vir hout en strukture.",
-    "service-rental-title": "Toerusting- & voertuigverhuring",
-    "service-rental-body":
-      "Verhuring van konstruksietoerusting en voertuie met ervare operateurs.",
-    "service-labour-title": "Voorsiening van arbeid",
-    "service-labour-body":
-      "Vaardige spanne vir kort- en langtermyn projekte.",
-    "service-steel-title": "Staalstrukture & stooreenhede",
-    "service-steel-body":
-      "Ontwerp en bou van staalstrukture, skure en stooreenhede.",
-
-    "home-projects-heading": "Onlangse projekte",
-    "home-projects-sub":
-      "’n Keuse van huidige en voltooide werk. Sien die volledige lys op die projekte-blad.",
-    "home-projects-link": "Sien alle projekte →",
-
-    "cta-heading": "Gereed om te begin bou?",
-    "cta-body":
-      "Deel jou planne en ons reel ’n terreinbesoek om idees, begrotings en tydlyne te bespreek.",
-    "cta-button": "Kontak ons",
-
-    "footer-about":
-      "Konstruksie & Instandhouding gebaseer in Bela Bela, met ’n fokus op houthuise, lodges en opknappings.",
-    "footer-contact-heading": "Kontak",
-    "footer-links-heading": "Vinnige skakels",
-    "footer-link-services": "Dienste",
-    "footer-link-projects": "Projekte",
-    "footer-link-quote": "Versoek ’n kwotasie",
-
-    "projects-page-heading": "Projekte",
-    "projects-page-sub":
-      "Besoek ons huidige en voltooide projekte. Filter volgens tipe en klik op ’n projek vir besonderhede en foto’s.",
-    "projects-filter-all": "Alles",
-    "projects-filter-new": "Nuwe wonings",
-    "projects-filter-lodge": "Lodges",
-    "projects-filter-reno": "Aanbouings & dekke",
-
-    "contact-validation": "Voltooi asseblief al die verpligte velde.",
-    "contact-sending": "Stuur tans…",
-    "contact-success":
-      "Dankie, ons het jou boodskap ontvang.",
-    "contact-error":
-      "Iets het fout gegaan. Kontak ons asseblief per foon of e-pos."
-  }
-};
-
-let currentLanguage = "en";
-
-function getString(key) {
-  const pack = translations[currentLanguage] || translations.en;
-  return pack[key] || translations.en[key] || "";
-}
-
-function applyTranslations(lang) {
-  currentLanguage = lang;
-  const strings = translations[lang] || translations.en;
-
-  document.querySelectorAll("[data-i18n]").forEach((el) => {
-    const key = el.dataset.i18n;
-    const text = strings[key];
-    if (!text) return;
-
-    const tag = el.tagName.toLowerCase();
-    if (tag === "input" || tag === "textarea") {
-      el.placeholder = text;
-    } else {
-      el.innerHTML = text;
-    }
-  });
-}
-
-function initLanguage() {
-  const stored = localStorage.getItem("rm-language");
-  const lang = stored || "en";
-  currentLanguage = lang;
-
-  const select = document.getElementById("lang-select");
-  if (select) {
-    select.value = lang;
-    select.addEventListener("change", () => {
-      const value = select.value;
-      localStorage.setItem("rm-language", value);
-      applyTranslations(value);
-      renderProjects();
-      renderHomeProjects();
-    });
-  }
-
-  applyTranslations(lang);
-}
+// main.js
 
 // =========================
 // NAV / FOOTER helpers
@@ -264,19 +31,21 @@ const projectsData = [
     type: "new-build",
     categoryKey: { en: "New private dwelling", af: "Nuwe privaat woning" },
     title: {
-      en: "Shona Langa V11 – Bela Bela",
-      af: "Shona Langa V11 – Bela Bela"
+      en: "Shona Langa T6 - Bela Bela",
+      af: "Shona Langa T6 - Bela Bela"
     },
     location: "Bela Bela District",
     description: {
-      en: "Construction of a new private dwelling in a nature estate with timber and thatch elements.",
-      af: "Bou van ’n nuwe privaat woning in ’n natuurlandgoed met hout- en grasdak-elemente."
-    },
-    thumb: "img/proj-shona-1.jpg",
+      en: "Double-storey private home with face-brick finishes, pitched roofing and an integrated double garage, built for modern bushveld living.",
+    af: "Dubbelverdieping privaat woning met baksteenafwerkings, teëldak en geïntegreerde dubbelmotorhuis, ontwerp vir moderne bosveldlewe."
+  },
+    thumb: "img/Shona Langa T6 - 1.jpeg",
     images: [
-      "img/proj-shona-1.jpg",
-      "img/proj-shona-2.jpg",
-      "img/proj-shona-3.jpg"
+      "img/Shona Langa T6 - 1.jpeg",
+      "img/Shona Langa T6 - 2.jpeg",
+      "img/Shona Langa T6 - 3.jpeg",
+      "img/Shona Langa T6 - 4.jpeg",
+      "img/Shona Langa T6 - 5.jpeg"
     ]
   },
   {
@@ -328,7 +97,7 @@ let activeFilter = "all";
 // =========================
 
 function projectToCardHTML(project) {
-  const lang = currentLanguage;
+  const lang = currentLanguage; // from lang.js
   const title = project.title[lang] || project.title.en;
   const category = project.categoryKey[lang] || project.categoryKey.en;
   return `
@@ -513,7 +282,7 @@ function initContactForm() {
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
-  initLanguage();
+  initLanguage();       // from lang.js
   initNav();
   initYear();
   initProjectFilters();

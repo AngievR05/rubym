@@ -309,7 +309,7 @@ h1, h2, h3, h4 {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--verde), var(--clay));
+  background: var(--dune);
   color: #fff;
 }
 
@@ -476,7 +476,7 @@ h1, h2, h3, h4 {
    ========================= */
 
 .cta {
-  background: linear-gradient(135deg, var(--casa), var(--dune));
+  background: var(--clay);
   color: #fff;
 }
 
@@ -629,7 +629,7 @@ h1, h2, h3, h4 {
   background-color: #241a13;
   color: #f4ece3;
   padding-top: 2.5rem;
-  margin-top: 3rem;
+  margin-top: 0;
   font-size: 0.85rem;
 }
 
