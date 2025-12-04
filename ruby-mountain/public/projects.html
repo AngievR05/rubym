@@ -63,12 +63,15 @@
         </header>
 
         <!-- FILTERS -->
-        <div class="projects-filter">
-          <button class="filter-btn filter-btn--active" data-filter="all" data-i18n="projects-filter-all">All</button>
-          <button class="filter-btn" data-filter="new-build" data-i18n="projects-filter-new">New dwellings</button>
-          <button class="filter-btn" data-filter="lodge" data-i18n="projects-filter-lodge">Lodges</button>
-          <button class="filter-btn" data-filter="renovation" data-i18n="projects-filter-reno">Alterations &amp; decks</button>
-        </div>
+<div class="projects-filter">
+  <button class="filter-btn filter-btn--active" data-filter="all" data-i18n="projects-filter-all">All</button>
+  <button class="filter-btn" data-filter="new-build" data-i18n="projects-filter-new">New dwellings</button>
+  <button class="filter-btn" data-filter="lodge" data-i18n="projects-filter-lodge">Lodges</button>
+  <button class="filter-btn" data-filter="renovation" data-i18n="projects-filter-reno">Alterations &amp; decks</button>
+  <!-- NEW: text-only / list projects -->
+  <button class="filter-btn" data-filter="listed" data-i18n="projects-filter-listed">More projects</button>
+</div>
+
 
         <!-- GRID -->
         <div id="projects-grid" class="card-grid card-grid--projects card-grid--projects-page">
@@ -82,6 +85,7 @@
   <footer class="footer">
     <div class="footer__inner">
       <div class="footer__col">
+        <img src="img/Logo.png" alt="Ruby Mountain logo" class="brand__logo">
         <h3>Ruby Mountain</h3>
         <p data-i18n="footer-about">
           Construction &amp; Maintenance based in Bela Bela, specialising in timber homes, lodges and renovations.
@@ -123,8 +127,10 @@
     </div>
   </div>
 
- <script src="js/lang.js"></script>
+<script src="js/lang.js"></script>
+<script src="js/projectsdata.js"></script>
 <script src="js/main.js"></script>
+
 
 </body>
 </html>

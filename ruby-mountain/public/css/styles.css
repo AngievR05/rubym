@@ -189,6 +189,14 @@ h1, h2, h3, h4 {
   width: 60px;
 }
 
+.footer img.brand__logo {
+  width: 100px;
+  background-color: var(--bg-page);
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
 .brand__name {
   display: block;
   font-weight: 700;
@@ -469,6 +477,13 @@ h1, h2, h3, h4 {
 .project-card__meta {
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+.project-card img {
+  border-radius: 8px;
+  height: 150px;
+  width: 100%;
+  object-fit: cover;
 }
 
 /* =========================

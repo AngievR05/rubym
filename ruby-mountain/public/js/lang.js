@@ -93,10 +93,12 @@ const translations = {
     "projects-page-heading": "Projects",
     "projects-page-sub":
       "Explore our current and completed projects. Filter by type and click any project for more details and photos.",
-    "projects-filter-all": "All",
-    "projects-filter-new": "New dwellings",
-    "projects-filter-lodge": "Lodges",
-    "projects-filter-reno": "Alterations & decks",
+    
+"projects-filter-all": "All",
+"projects-filter-new": "New dwellings",
+"projects-filter-lodge": "Lodges",
+"projects-filter-reno": "Alterations & decks",
+"projects-filter-listed": "More projects",
 
     // --- SERVICES PAGE ---
 
@@ -267,9 +269,10 @@ const translations = {
     "projects-page-sub":
       "Besoek ons huidige en voltooide projekte. Filter volgens tipe en klik op ’n projek vir besonderhede en foto’s.",
     "projects-filter-all": "Alles",
-    "projects-filter-new": "Nuwe wonings",
-    "projects-filter-lodge": "Lodges",
-    "projects-filter-reno": "Aanbouings & dekke",
+"projects-filter-new": "Nuwe wonings",
+"projects-filter-lodge": "Lodges",
+"projects-filter-reno": "Aanbouings & dekke",
+"projects-filter-listed": "Meer projekte",
 
     // --- SERVICES PAGE ---
 

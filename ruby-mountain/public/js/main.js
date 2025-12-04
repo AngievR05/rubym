@@ -22,97 +22,36 @@ function initYear() {
 }
 
 // =========================
-// PROJECTS DATA
+// PROJECTS (rendering only)
 // =========================
-
-const projectsData = [
-  {
-    id: "shona-langa",
-    type: "new-build",
-    categoryKey: { en: "New private dwelling", af: "Nuwe privaat woning" },
-    title: {
-      en: "Shona Langa T6 - Bela Bela",
-      af: "Shona Langa T6 - Bela Bela"
-    },
-    location: "Bela Bela District",
-    description: {
-      en: "Double-storey private home with face-brick finishes, pitched roofing and an integrated double garage, built for modern bushveld living.",
-    af: "Dubbelverdieping privaat woning met baksteenafwerkings, teëldak en geïntegreerde dubbelmotorhuis, ontwerp vir moderne bosveldlewe."
-  },
-    thumb: "img/Shona Langa T6 - 1.jpeg",
-    images: [
-      "img/Shona Langa T6 - 1.jpeg",
-      "img/Shona Langa T6 - 2.jpeg",
-      "img/Shona Langa T6 - 3.jpeg",
-      "img/Shona Langa T6 - 4.jpeg",
-      "img/Shona Langa T6 - 5.jpeg"
-    ]
-  },
-  {
-    id: "mokalakal-1",
-    type: "lodge",
-    categoryKey: { en: "Lodge dwelling", af: "Lodge-woning" },
-    title: {
-      en: "Mokalakal Lodge – Phase 1",
-      af: "Mokalakal Lodge – Fase 1"
-    },
-    location: "Bela Bela",
-    description: {
-      en: "New timber-and-thatch lodge with wrap-around deck and views over the reserve.",
-      af: "Nuwe hout- en grasdak-lodge met stoep rondom en uitsigte oor die reservaat."
-    },
-    thumb: "img/proj-mokalakal-1.jpg",
-    images: [
-      "img/proj-mokalakal-1.jpg",
-      "img/proj-mokalakal-2.jpg",
-      "img/proj-mokalakal-3.jpg"
-    ]
-  },
-  {
-    id: "mokalakal-2",
-    type: "renovation",
-    categoryKey: { en: "Alterations & deck", af: "Aanbouings & dek" },
-    title: {
-      en: "Mokalakal Lodge – Extensions",
-      af: "Mokalakal Lodge – Aanbouings"
-    },
-    location: "Bela Bela",
-    description: {
-      en: "Extensions to existing lodge, including new deck, roof work and interior upgrades.",
-      af: "Aanbouings tot bestaande lodge, insluitend nuwe dek, dakwerk en binnenshuise opgraderings."
-    },
-    thumb: "img/proj-mokalakal-ext-1.jpg",
-    images: [
-      "img/proj-mokalakal-ext-1.jpg",
-      "img/proj-mokalakal-ext-2.jpg",
-      "img/proj-mokalakal-ext-3.jpg"
-    ]
-  }
-];
 
 let activeFilter = "all";
 
-// =========================
-// PROJECT RENDER HELPERS
-// =========================
-
 function projectToCardHTML(project) {
-  const lang = currentLanguage; // from lang.js
+  if (!project) return "";
+  const lang = window.currentLanguage || "en";
   const title = project.title[lang] || project.title.en;
   const category = project.categoryKey[lang] || project.categoryKey.en;
-  return `
-    <article class="card project-card" data-project-id="${project.id}">
+
+  const thumbHTML = project.thumb
+    ? `
       <div class="project-card__thumb">
         <img src="${project.thumb}" alt="${title}">
       </div>
+    `
+    : "";
+
+  return `
+    <article class="card project-card" data-project-id="${project.id}">
+      ${thumbHTML}
       <h3>${title}</h3>
       <p class="project-card__meta">${category} · ${project.location}</p>
     </article>
   `;
 }
 
-// attach click handlers inside a container
 function attachProjectCardHandlers(container) {
+  if (!container) return;
   const cards = container.querySelectorAll(".project-card");
   cards.forEach((card) => {
     card.addEventListener("click", () => {
@@ -122,22 +61,19 @@ function attachProjectCardHandlers(container) {
   });
 }
 
-// Render preview on Home
 function renderHomeProjects() {
   const container = document.getElementById("home-projects");
-  if (!container) return;
-
-  const toShow = projectsData.slice(0, 3);
+  if (!container || !window.projectsData) return;
+  const toShow = window.projectsData.slice(0, 3);
   container.innerHTML = toShow.map(projectToCardHTML).join("");
   attachProjectCardHandlers(container);
 }
 
-// Render full list on Projects page
 function renderProjects() {
   const grid = document.getElementById("projects-grid");
-  if (!grid) return;
+  if (!grid || !window.projectsData) return;
 
-  const filtered = projectsData.filter((p) => {
+  const filtered = window.projectsData.filter((p) => {
     if (activeFilter === "all") return true;
     return p.type === activeFilter;
   });
@@ -175,31 +111,32 @@ function initProjectFilters() {
 
 function openProjectModal(projectId) {
   const modal = document.getElementById("project-modal");
-  if (!modal) return;
+  if (!modal || !window.projectsData) return;
 
-  const project = projectsData.find((p) => p.id === projectId);
+  const project = window.projectsData.find((p) => p.id === projectId);
   if (!project) return;
 
-  const lang = currentLanguage;
+  const lang = window.currentLanguage || "en";
+  const title = project.title[lang] || project.title.en;
+  const category = project.categoryKey[lang] || project.categoryKey.en;
+  const desc = project.description[lang] || project.description.en;
 
   const titleEl = document.getElementById("modal-title");
   const metaEl = document.getElementById("modal-meta");
   const descEl = document.getElementById("modal-description");
   const galleryEl = document.getElementById("modal-gallery");
 
-  titleEl.textContent = project.title[lang] || project.title.en;
-  metaEl.textContent = `${
-    project.categoryKey[lang] || project.categoryKey.en
-  } · ${project.location}`;
-  descEl.textContent = project.description[lang] || project.description.en;
+  titleEl.textContent = title;
+  metaEl.textContent = `${category} · ${project.location}`;
+  descEl.textContent = desc;
 
-  galleryEl.innerHTML = project.images
-    .map(
-      (src) => `
-    <img src="${src}" alt="${project.title[lang] || project.title.en}">
-  `
-    )
-    .join("");
+  if (project.images && project.images.length) {
+    galleryEl.innerHTML = project.images
+      .map((src) => `<img src="${src}" alt="${title}">`)
+      .join("");
+  } else {
+    galleryEl.innerHTML = "";
+  }
 
   modal.classList.add("modal--open");
   modal.setAttribute("aria-hidden", "false");
@@ -259,14 +196,10 @@ function initContactForm() {
         body: JSON.stringify(payload)
       });
 
-      if (!res.ok) {
-        throw new Error("Network response was not ok");
-      }
+      if (!res.ok) throw new Error("Network response was not ok");
 
       const data = await res.json();
-      if (!data.ok) {
-        throw new Error("Server indicated failure");
-      }
+      if (!data.ok) throw new Error("Server indicated failure");
 
       statusEl.textContent = getString("contact-success");
       form.reset();
@@ -282,7 +215,7 @@ function initContactForm() {
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
-  initLanguage();       // from lang.js
+  if (typeof initLanguage === "function") initLanguage(); // from lang.js
   initNav();
   initYear();
   initProjectFilters();
