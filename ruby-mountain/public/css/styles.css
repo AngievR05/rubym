@@ -149,7 +149,111 @@ h3 {
   );
 }
 
+/* =========================
+   RECENT PROJECTS – INTRO
+   HORIZONTAL STUMP STRIP
+   ========================= */
 
+.section--projects-intro {
+  position: relative;
+  padding: 6rem 0 5rem;
+  overflow: hidden;
+
+  background-color: var(--cloth);
+
+  /* 🔑 Horizontal stump strip */
+  background-image: url("../img/illustrations/Stump.png");
+  background-repeat: repeat-x;          /* only horizontal */
+  background-size: 260px 260px;          /* stump scale */
+  background-position: center 58%;       /* band sits behind cards */
+}
+
+/* ---------------------------------
+   Primary material wash (calming)
+   --------------------------------- */
+
+.section--projects-intro::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(28, 20, 14, 0.82),
+      rgba(28, 20, 14, 0.72)
+    );
+
+  backdrop-filter: blur(1.5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------------------------------
+   Focus vignette (pulls eye inward)
+   --------------------------------- */
+
+.section--projects-intro::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.28),
+      transparent 65%
+    );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---------------------------------
+   Lift content above texture
+   --------------------------------- */
+
+.section--projects-intro > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.section__header--projects {
+  text-align: center;
+  margin-bottom: 3.25rem;
+}
+
+.section__header--projects p {
+  max-width: 42ch;
+  margin-inline: auto;
+}
+
+/* =========================
+   CARD GRID (CENTERED)
+   ========================= */
+
+.section--projects-intro .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 260px));
+  justify-content: center;
+  gap: 2rem;
+  margin-inline: auto;
+  max-width: 1100px;
+}
+
+/* =========================
+   FOOTER / CTA
+   ========================= */
+
+.section--projects-intro .section__footer {
+  margin-top: 2.75rem;
+  text-align: center;
+}
 
 
 /* =========================
@@ -431,9 +535,175 @@ h3 {
   color: var(--text-muted);
 }
 
+.section--ornament-brick {
+  position: relative;
+
+  /* Smaller, more refined brick pattern */
+  background-image: url("../img/illustrations/Brick_Wall.png");
+  background-repeat: repeat;
+  background-size: 670px auto; /* 🔑 smaller scale */
+  background-position: center;
+
+  padding: 5rem 0;
+}
+
+
+
+/* Soft material wash */
+.section--ornament-brick::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  /* Darker + calmer overlay */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(28, 20, 14, 0.55),
+      rgba(28, 20, 14, 0.45)
+    );
+
+  pointer-events: none;
+}
+
+
+.section--ornament-brick::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 88%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(124, 86, 61, 0.35),
+    transparent
+  );
+  pointer-events: none;
+}
+
+
+.section--ornament-brick .card {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.section--ornament-brick .card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 0.6s ease;
+}
+
+/* Typography breathing room */
+.section--ornament-brick h2 {
+  margin-bottom: 2.25rem;
+  color: #fff;
+  text-shadow: 0 2.5px 1px rgba(0, 0, 0, 0.263);
+}
+
+
+/* Lift content above texture */
+.section--ornament-brick > * {
+  position: relative;
+  z-index: 1;
+}
+
+
 /* =========================
    CARDS & GRIDS
    ========================= */
+
+/* =========================
+   ORNAMENTED SERVICE CARDS
+   ========================= */
+
+.card--ornamented {
+  position: relative;
+  padding: 3rem 2.25rem;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+/* Content wrapper inside ornamented cards */
+.card--ornamented .card__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  text-align: center;
+}
+
+/* Ornament base */
+.card__ornament {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Corners */
+.card__ornament.tl {
+  top: 18px;
+  left: 18px;
+}
+
+.card__ornament.tr {
+  top: 18px;
+  right: 18px;
+}
+
+.card__ornament.br {
+  bottom: 18px;
+  right: 18px;
+}
+
+.card__ornament.bl {
+  bottom: 18px;
+  left: 18px;
+}
+
+/* Hover refinement (subtle, premium) */
+.card--ornamented:hover .card__ornament {
+  opacity: 1;
+  transform-origin: center;
+}
+
+.card--ornamented:hover {
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(184, 141, 106, 0.25);
+}
+
+.card--ornamented:hover .card__ornament.tl {
+  transform: rotate(0deg) scale(1.05);
+}
+
+.card--ornamented:hover .card__ornament.tr {
+  transform: rotate(90deg) scale(1.05);
+}
+
+.card--ornamented:hover .card__ornament.br {
+  transform: rotate(180deg) scale(1.05);
+}
+
+.card--ornamented:hover .card__ornament.bl {
+  transform: rotate(270deg) scale(1.05);
+}
+
+.card--ornamented .card__content p {
+  max-width: 28ch;
+  line-height: 1.5;
+}
+
+.card--ornamented .card__content {
+  padding-top: 0.5rem;
+}
 
 .card-grid {
   display: grid;
