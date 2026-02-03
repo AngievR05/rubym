@@ -1,14 +1,24 @@
 // server.js
+const path = require("path");
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
 const app = express();
-app.use(cors());              // allow requests from your front-end
-app.use(express.json());      // parse JSON bodies
 
-// POST /api/contact
+app.use(cors());
+app.use(express.json());
+
+// ✅ Serve your website from /public
+app.use(express.static(path.join(__dirname, "public")));
+
+// ✅ Home page
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// ✅ Contact API
 app.post("/api/contact", async (req, res) => {
   const { name, email, subject, message } = req.body || {};
 
@@ -17,20 +27,21 @@ app.post("/api/contact", async (req, res) => {
   }
 
   try {
-    // configure your SMTP (use your own host / user / pass)
+    const smtpPort = Number(process.env.SMTP_PORT) || 587;
+
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT) || 587,
-      secure: false,
+      port: smtpPort,
+      secure: smtpPort === 465, // true only if port is 465
       auth: {
         user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-      }
+        pass: process.env.SMTP_PASS,
+      },
     });
 
     await transporter.sendMail({
       from: `"Ruby Mountain Website" <${process.env.SMTP_USER}>`,
-      to: "info@rubym.co.za",    // where you want to receive the email
+      to: "info@rubym.co.za",
       replyTo: email,
       subject: subject || "New contact form message",
       text: `
@@ -39,7 +50,7 @@ Email: ${email}
 
 Message:
 ${message}
-      `.trim()
+      `.trim(),
     });
 
     res.json({ ok: true });
@@ -51,5 +62,5 @@ ${message}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`API listening on http://localhost:${PORT}`);
+  console.log(`Website running at http://localhost:${PORT}`);
 });
