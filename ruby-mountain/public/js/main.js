@@ -117,25 +117,37 @@ function openProjectModal(projectId) {
   if (!project) return;
 
   const lang = window.currentLanguage || "en";
-  const title = project.title[lang] || project.title.en;
-  const category = project.categoryKey[lang] || project.categoryKey.en;
-  const desc = project.description[lang] || project.description.en;
+  const title = project.title?.[lang] || project.title?.en || "Project";
+  const category = project.categoryKey?.[lang] || project.categoryKey?.en || "";
+  const desc = project.description?.[lang] || project.description?.en || "";
 
   const titleEl = document.getElementById("modal-title");
   const metaEl = document.getElementById("modal-meta");
   const descEl = document.getElementById("modal-description");
   const galleryEl = document.getElementById("modal-gallery");
 
-  titleEl.textContent = title;
-  metaEl.textContent = `${category} · ${project.location}`;
-  descEl.textContent = desc;
+  if (titleEl) titleEl.textContent = title;
+  if (metaEl) metaEl.textContent = `${category} · ${project.location || ""}`;
+  if (descEl) descEl.textContent = desc;
 
-  if (project.images && project.images.length) {
-    galleryEl.innerHTML = project.images
-      .map((src) => `<img src="${src}" alt="${title}">`)
-      .join("");
-  } else {
-    galleryEl.innerHTML = "";
+  if (galleryEl) {
+    if (project.images && project.images.length) {
+      galleryEl.innerHTML = project.images
+        .map(
+          (src) => `
+            <img 
+              src="${src}" 
+              alt="${title}" 
+              class="modal-gallery-img"
+              data-full="${src}"
+              loading="lazy"
+            >
+          `
+        )
+        .join("");
+    } else {
+      galleryEl.innerHTML = "";
+    }
   }
 
   modal.classList.add("modal--open");
@@ -154,8 +166,8 @@ function initModal() {
     modal.setAttribute("aria-hidden", "true");
   }
 
-  closeBtn.addEventListener("click", close);
-  backdrop.addEventListener("click", close);
+  if (closeBtn) closeBtn.addEventListener("click", close);
+  if (backdrop) backdrop.addEventListener("click", close);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") close();
@@ -183,23 +195,24 @@ function initContactForm() {
 
     const formData = new FormData(form);
     const payload = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      subject: formData.get("subject"),
-      message: formData.get("message")
+      name: String(formData.get("name") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      subject: String(formData.get("subject") || "").trim(),
+      message: String(formData.get("message") || "").trim(),
     };
 
     try {
-      const res = await fetch("http://localhost:3000/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
-      if (!res.ok) throw new Error("Network response was not ok");
+      const data = await res.json().catch(() => ({}));
 
-      const data = await res.json();
-      if (!data.ok) throw new Error("Server indicated failure");
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || "Contact request failed");
+      }
 
       statusEl.textContent = getString("contact-success");
       form.reset();
@@ -209,6 +222,7 @@ function initContactForm() {
     }
   });
 }
+
 // =========================
 // SCROLL REVEAL (PROJECT CARDS)
 // =========================
@@ -245,22 +259,66 @@ function initScrollReveal() {
   });
 }
 
+// =========================
+// IMAGE LIGHTBOX (85% screen)
+// =========================
+
+function initImageLightbox() {
+  const lightbox = document.getElementById("image-lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.getElementById("lightbox-close");
+  if (!lightbox || !lightboxImg || !closeBtn) return;
+
+  const backdrop = lightbox.querySelector(".image-lightbox__backdrop");
+  if (!backdrop) return;
+
+  function openLightbox(src, alt = "") {
+    lightboxImg.src = src;
+    lightboxImg.alt = alt;
+    lightbox.classList.add("image-lightbox--open");
+    lightbox.setAttribute("aria-hidden", "false");
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove("image-lightbox--open");
+    lightbox.setAttribute("aria-hidden", "true");
+    lightboxImg.src = "";
+    lightboxImg.alt = "";
+  }
+
+  // event delegation so it works for injected images
+  document.addEventListener("click", (e) => {
+    const img = e.target.closest(".modal-gallery-img");
+    if (!img) return;
+    openLightbox(img.dataset.full || img.src, img.alt || "");
+  });
+
+  closeBtn.addEventListener("click", closeLightbox);
+  backdrop.addEventListener("click", closeLightbox);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeLightbox();
+  });
+}
 
 // =========================
 // INIT ON LOAD
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (typeof initLanguage === "function") initLanguage(); // from lang.js
+  if (typeof initLanguage === "function") initLanguage();
+
   initNav();
   initYear();
   initProjectFilters();
   initModal();
+  initImageLightbox();
   initContactForm();
 
   renderHomeProjects();
   renderProjects();
   initScrollReveal();
+
+  // Debug (temporary): confirms projects data exists
+  console.log("projectsData length:", window.projectsData?.length);
 });
-
-

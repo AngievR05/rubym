@@ -77,9 +77,8 @@
 
 
         <!-- GRID -->
-        <div id="projects-grid" class="card-grid card-grid--projects card-grid--projects-page">
-          <!-- JS renders projects here -->
-        </div>
+        <div id="projects-grid" class="card-grid card-grid--projects card-grid--projects-page"></div>
+
       </div>
     </section>
   </main>
@@ -96,7 +95,7 @@
       </div>
       <div class="footer__col">
         <h4 data-i18n="footer-contact-heading">Contact</h4>
-        <p>10 Klapperhoef Avenue<br>Bela Bela, South Africa</p>
+        <p>Plot 123, Noodhulp<br>Bela-Bela 0480, South Africa</p>
         <p><a href="tel:0716020907">071 602 0907</a><br>
            <a href="mailto:info@rubym.co.za">info@rubym.co.za</a></p>
       </div>
@@ -129,6 +128,17 @@
       </div>
     </div>
   </div>
+
+  <!-- IMAGE LIGHTBOX -->
+<div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+  <div class="image-lightbox__backdrop"></div>
+
+  <div class="image-lightbox__dialog">
+    <img id="lightbox-img" src="" alt="">
+    <button class="image-lightbox__close" id="lightbox-close">×</button>
+  </div>
+</div>
+
 
 <script src="js/lang.js"></script>
 <script src="js/projectsdata.js"></script>

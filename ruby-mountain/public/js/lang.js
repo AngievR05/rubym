@@ -19,9 +19,9 @@ const translations = {
     "nav-contact": "Contact",
 
     // Home / hero
-    "hero-heading": "Timber homes and lodges built to last.",
+    "hero-heading": "Luxury homes and lodges built to last.",
     "hero-sub":
-      "Ruby Mountain specialises in timber construction, renovations and maintenance across Bela Bela and surrounds.",
+      "Ruby Mountain specialises in luxury construction, renovations and maintenance across Bela-Bela and surrounds.",
     "hero-cta-primary": "Request a quote",
     "hero-cta-secondary": "View recent projects",
 
@@ -41,7 +41,7 @@ const translations = {
     // Home / services teaser
     "services-heading": "What we do",
     "services-sub":
-      "From new timber lodges to general maintenance, Ruby Mountain covers the full scope of construction services.",
+      "From new luxury lodges to general maintenance, Ruby Mountain covers the full scope of construction services.",
 
     "service-construction-title": "Construction",
     "service-construction-body":
@@ -57,7 +57,7 @@ const translations = {
       "Planning, scheduling and coordination of all trades to keep your project on time and on budget.",
     "service-maintenance-title": "General maintenance",
     "service-maintenance-body":
-      "Repair work, timber treatment, painting, waterproofing and other maintenance to protect your assets.",
+      "Repair work, painting, waterproofing and other maintenance to protect your assets.",
     "service-rental-title": "Equipment & vehicle rental",
     "service-rental-body":
       "Hire of construction equipment and vehicles, with experienced operators where required.",
@@ -82,7 +82,7 @@ const translations = {
 
     // Footer
     "footer-about":
-      "Construction & Maintenance based in Bela Bela, specialising in timber homes, lodges and renovations.",
+      "Construction & Maintenance based in Bela-Bela, specialising in luxury homes, lodges and renovations.",
     "footer-contact-heading": "Contact",
     "footer-links-heading": "Quick links",
     "footer-link-services": "Services",
@@ -115,9 +115,9 @@ const translations = {
     // --- ABOUT PAGE ---
 
     "about-page-intro-1":
-      "Ruby Mountain Trading (Pty) Ltd was established in 2007 by Willem Malan and operates as Ruby Mountain Construction & Maintenance in Bela Bela and surrounding areas.",
+      "Ruby Mountain Trading (Pty) Ltd was established in 2007 by Willem Malan and operates as Ruby Mountain Construction & Maintenance in Bela-Bela and surrounding areas.",
     "about-page-intro-2":
-      "Our focus is on high quality timber construction, private dwellings, lodges and ongoing maintenance services. We combine practical on-site expertise with reliable project management to deliver work that stands up over time.",
+      "Our focus is on high quality construction, private dwellings, lodges and ongoing maintenance services. We combine practical on-site expertise with reliable project management to deliver work that stands up over time.",
 
     "about-experience-heading": "Our experience",
     "about-experience-1":
@@ -156,7 +156,7 @@ const translations = {
 
 "contact-address-heading": "Address",
 "contact-address-body":
-  "Ruby Mountain Construction & Maintenance<br>10 Klapperhoef Avenue<br>Bela Bela 0480, South Africa",
+  "Ruby Mountain Construction & Maintenance<br>Plot 123, Noodhulp <br>Bela-Bela 0480, South Africa",
 
 "contact-map-heading": "Map",
 "contact-map-placeholder": "Map placeholder – Google Maps embed",
@@ -194,9 +194,9 @@ const translations = {
     "nav-contact": "Kontak",
 
     // Home / hero
-    "hero-heading": "Houthuise en lodges wat lank hou.",
+    "hero-heading": "Luukse huise en lodges wat lank hou.",
     "hero-sub":
-      "Ruby Mountain spesialiseer in houtkonstruksie, aanbouings en instandhouding in Bela Bela en omgewing.",
+      "Ruby Mountain spesialiseer in konstruksie, aanbouings en instandhouding in Bela-Bela en omgewing.",
     "hero-cta-primary": "Versoek ’n kwotasie",
     "hero-cta-secondary": "Sien onlangse projekte",
 
@@ -216,7 +216,7 @@ const translations = {
     // Home / services teaser
     "services-heading": "Wat ons doen",
     "services-sub":
-      "Van nuwe houtlodges tot algemene instandhouding – Ruby Mountain dek die volle spektrum van konstruksiedienste.",
+      "Van nuwe luukse lodges tot algemene instandhouding – Ruby Mountain dek die volle spektrum van konstruksiedienste.",
 
     "service-construction-title": "Konstruksie",
     "service-construction-body":
@@ -232,7 +232,7 @@ const translations = {
       "Beplanning, skedulering en koördinering van alle kontrakteurs om projekte betyds en binne begroting te hou.",
     "service-maintenance-title": "Algemene instandhouding",
     "service-maintenance-body":
-      "Herstelwerk, houtbehandeling, verfwerk, waterdigting en ander instandhouding om bates te beskerm.",
+      "Herstelwerk, verfwerk, waterdigting en ander instandhouding om bates te beskerm.",
     "service-rental-title": "Toerusting- & voertuigverhuring",
     "service-rental-body":
       "Verhuring van konstruksietoerusting en voertuie, met operateurs waar nodig.",
@@ -257,7 +257,7 @@ const translations = {
 
     // Footer
     "footer-about":
-      "Konstruksie & Instandhouding gebaseer in Bela Bela, met ’n fokus op houthuise, lodges en opknappings.",
+      "Konstruksie & Instandhouding gebaseer in Bela-Bela, met ’n fokus op luukse huise, lodges en opknappings.",
     "footer-contact-heading": "Kontak",
     "footer-links-heading": "Vinnige skakels",
     "footer-link-services": "Dienste",
@@ -289,7 +289,7 @@ const translations = {
     // --- ABOUT PAGE ---
 
     "about-page-intro-1":
-      "Ruby Mountain Trading (Edms) Bpk is in 2007 deur Willem Malan gestig en bedryf as Ruby Mountain Construction & Maintenance in Bela Bela en omliggende gebiede.",
+      "Ruby Mountain Trading (Edms) Bpk is in 2007 deur Willem Malan gestig en bedryf as Ruby Mountain Construction & Maintenance in Bela-Bela en omliggende gebiede.",
     "about-page-intro-2":
       "Ons fokus is op hoë-gehalte houtkonstruksie, privaat wonings, lodges en deurlopende instandhouding. Ons kombineer praktiese terreinervaring met betroubare projekbestuur om werk te lewer wat oor tyd standhou.",
 
@@ -329,7 +329,7 @@ const translations = {
 
 "contact-address-heading": "Adres",
 "contact-address-body":
-  "Ruby Mountain Construction & Maintenance<br>10 Klapperhoeflaan<br>Bela Bela 0480, Suid-Afrika",
+  "Ruby Mountain Construction & Maintenance<br>Plot 123, Noodhulp <br>Bela-Bela 0480, Suid-Afrika",
 
 "contact-map-heading": "Kaart",
 "contact-map-placeholder": "Kaart-plekhouer – Google Maps-insluiting",
