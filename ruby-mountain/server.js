@@ -29,9 +29,11 @@ console.log("SMTP HOST:", process.env.SMTP_HOST);
 
 // Contact API
 app.post("/api/contact", async (req, res) => {
-  const { name, email, subject, message } = req.body || {};
+  const { name, email, phone, subject, message } = req.body || {};
 
-  if (!name || !email || !message) {
+
+  if (!name || !email || !phone || !message) {
+
     return res.status(400).json({ ok: false, error: "Missing required fields" });
   }
 
@@ -40,11 +42,13 @@ app.post("/api/contact", async (req, res) => {
   const safeEmail = String(email).trim().slice(0, 120);
   const safeSubject = String(subject || "").trim().slice(0, 140);
   const safeMessage = String(message).trim().slice(0, 5000);
+  const safePhone = String(phone).trim().slice(0, 40);
+
 
   // Minimal email format check (not perfect, but blocks obvious junk)
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(safeEmail);
 
-  if (!safeName || !emailOk || !safeMessage) {
+  if (!safeName || !emailOk || !safePhone || !safeMessage) {
     return res.status(400).json({ ok: false, error: "Invalid input" });
   }
 
@@ -83,7 +87,13 @@ app.post("/api/contact", async (req, res) => {
       subject: safeSubject
         ? `Website: ${safeSubject}`
         : "Website: New contact form message",
-      text: `Name: ${safeName}\nEmail: ${safeEmail}\n\nMessage:\n${safeMessage}`,
+      text: `Name: ${safeName}
+Email: ${safeEmail}
+Phone: ${safePhone}
+
+Message:
+${safeMessage}`,
+
     });
 
     console.log("✅ Email sent:", info.messageId);

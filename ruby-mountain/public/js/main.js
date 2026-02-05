@@ -310,11 +310,13 @@ function initContactForm() {
 
     const formData = new FormData(form);
     const payload = {
-      name: String(formData.get("name") || "").trim(),
-      email: String(formData.get("email") || "").trim(),
-      subject: String(formData.get("subject") || "").trim(),
-      message: String(formData.get("message") || "").trim(),
-    };
+  name: String(formData.get("name") || "").trim(),
+  email: String(formData.get("email") || "").trim(),
+  phone: String(formData.get("phone") || "").trim(),
+  subject: String(formData.get("subject") || "").trim(),
+  message: String(formData.get("message") || "").trim(),
+};
+
 
     log("Contact form: submitting payload (sanitized):", {
       name: payload.name,
