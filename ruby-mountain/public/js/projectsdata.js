@@ -5,6 +5,74 @@ const projectsData = [
   // ========================
   // FEATURED PROJECTS (WITH IMAGES)
   // ========================
+{
+  id: "mabalingwe1002",
+  type: "new-build",
+  categoryKey: {
+    en: "Luxury holiday home",
+    af: "Luukse vakansiehuis"
+  },
+  title: {
+    en: "Mabalingwe 1002",
+    af: "Mabalingwe 1002"
+  },
+  location: "Bela Bela District",
+  description: {
+    en: "Luxury vacation home featuring 5 bedrooms and 7 bathrooms, designed for comfortable large-group stays with expansive glazing, elevated views, and high-quality modern finishes.",
+    af: "Luukse vakansiehuis met 5 slaapkamers en 7 badkamers, ontwerp vir gemaklike grootgroep-verblyf met groot glasoppervlaktes, verhoogde uitsigte en moderne hoëgehalte afwerkings."
+  },
+  thumb: "img/Mabalingwe 1002 - 1.jpg",
+  images: [
+    "img/Mabalingwe 1002 - 1.jpg",
+    "img/Mabalingwe 1002 - 2.jpg",
+    "img/Mabalingwe 1002 - 3.jpg",
+    "img/Mabalingwe 1002 - 4.jpg",
+    "img/Mabalingwe 1002 - 5.jpg",
+    "img/Mabalingwe 1002 - 6.jpg",
+    "img/Mabalingwe 1002 - 7.jpg",
+    "img/Mabalingwe 1002 - 8.jpg",
+    "img/Mabalingwe 1002 - 9.jpg",
+    "img/Mabalingwe 1002 - 10.jpg",
+    "img/Mabalingwe 1002 - 11.jpg",
+    "img/Mabalingwe 1002 - 12.jpg",
+    "img/Mabalingwe 1002 - 13.jpg",
+    "img/Mabalingwe 1002 - 14.jpg",
+    "img/Mabalingwe 1002 - 15.jpg"
+  ]
+},
+
+  {
+  id: "mabula-entertainment-centre",
+  type: "new-build",
+  categoryKey: {
+    en: "Commercial development",
+    af: "Kommersiële ontwikkeling"
+  },
+  title: {
+    en: "Mabula Entertainment Centre",
+    af: "Mabula Vermaaklikheidsentrum"
+  },
+  location: "Bela Bela District",
+  description: {
+    en: "Purpose-built entertainment centre featuring modern brick architecture, expansive covered walkways, and elevated viewing areas designed to support high visitor volumes within the Mabula area.",
+    af: "Doelgeboude vermaaklikheidsentrum met moderne baksteen-argitektuur, ruim onderdak loopareas en verhoogde uitkykpunte, ontwerp om groot besoekersgetalle in die Mabula-omgewing te ondersteun."
+  },
+  thumb: "img/Mabula Entertainment Centre - 1.jpg",
+  images: [
+    "img/Mabula Entertainment Centre - 1.jpg",
+    "img/Mabula Entertainment Centre - 2.jpg",
+    "img/Mabula Entertainment Centre - 6.jpg",
+    "img/Mabula Entertainment Centre - 9.jpg",
+    "img/Mabula Entertainment Centre - 12.jpg",
+    "img/Mabula Entertainment Centre - 14.jpg",
+    "img/Mabula Entertainment Centre - 15.jpg",
+    "img/Mabula Entertainment Centre - 16.jpg",
+    "img/Mabula Entertainment Centre - 22.jpg",
+    "img/Mabula Entertainment Centre - 23.jpg",
+    "img/Mabula Entertainment Centre - 25.jpg",
+    "img/Mabula Entertainment Centre - 30.jpg"
+  ]
+},
 
   {
     id: "shona-langa-v11",

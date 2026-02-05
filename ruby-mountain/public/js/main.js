@@ -1,6 +1,34 @@
 // main.js
 
 // =========================
+// SMALL UTILITIES
+// =========================
+
+const DEBUG = true;
+
+function log(...args) {
+  if (DEBUG) console.log("[RubyMountain]", ...args);
+}
+
+function warn(...args) {
+  if (DEBUG) console.warn("[RubyMountain]", ...args);
+}
+
+function errLog(...args) {
+  console.error("[RubyMountain]", ...args);
+}
+
+// Safe translation helper: won't crash if getString/lang isn't loaded
+function t(key, fallback) {
+  try {
+    if (typeof getString === "function") return getString(key);
+  } catch (e) {
+    // ignore
+  }
+  return fallback;
+}
+
+// =========================
 // NAV / FOOTER helpers
 // =========================
 
@@ -8,17 +36,28 @@ function initNav() {
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".nav");
 
-  if (!toggle || !nav) return;
+  if (!toggle || !nav) {
+    warn("initNav: nav-toggle or nav not found (ok on some pages).");
+    return;
+  }
 
   toggle.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("nav--open");
     toggle.setAttribute("aria-expanded", String(isOpen));
+    log("Nav toggled:", isOpen ? "OPEN" : "CLOSED");
   });
+
+  log("initNav: ready");
 }
 
 function initYear() {
   const yearSpan = document.getElementById("year");
-  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+  if (yearSpan) {
+    yearSpan.textContent = new Date().getFullYear();
+    log("initYear: set footer year");
+  } else {
+    warn("initYear: #year not found (ok on some pages).");
+  }
 }
 
 // =========================
@@ -29,9 +68,11 @@ let activeFilter = "all";
 
 function projectToCardHTML(project) {
   if (!project) return "";
+
   const lang = window.currentLanguage || "en";
-  const title = project.title[lang] || project.title.en;
-  const category = project.categoryKey[lang] || project.categoryKey.en;
+  const title = project?.title?.[lang] || project?.title?.en || "Project";
+  const category =
+    project?.categoryKey?.[lang] || project?.categoryKey?.en || "";
 
   const thumbHTML = project.thumb
     ? `
@@ -45,33 +86,61 @@ function projectToCardHTML(project) {
     <article class="card project-card" data-project-id="${project.id}">
       ${thumbHTML}
       <h3>${title}</h3>
-      <p class="project-card__meta">${category} · ${project.location}</p>
+      <p class="project-card__meta">${category} · ${project.location || ""}</p>
     </article>
   `;
 }
 
 function attachProjectCardHandlers(container) {
   if (!container) return;
+
   const cards = container.querySelectorAll(".project-card");
+  if (!cards.length) {
+    warn("attachProjectCardHandlers: no cards found.");
+    return;
+  }
+
   cards.forEach((card) => {
     card.addEventListener("click", () => {
       const id = card.getAttribute("data-project-id");
+      log("Project card clicked:", id);
       openProjectModal(id);
     });
   });
+
+  log("attachProjectCardHandlers: attached to", cards.length, "cards");
 }
 
 function renderHomeProjects() {
   const container = document.getElementById("home-projects");
-  if (!container || !window.projectsData) return;
+  if (!container) {
+    warn("renderHomeProjects: #home-projects not found (ok on non-home pages).");
+    return;
+  }
+
+  if (!Array.isArray(window.projectsData)) {
+    warn("renderHomeProjects: window.projectsData missing or not an array.");
+    return;
+  }
+
   const toShow = window.projectsData.slice(0, 3);
   container.innerHTML = toShow.map(projectToCardHTML).join("");
   attachProjectCardHandlers(container);
+
+  log("renderHomeProjects: rendered", toShow.length, "projects");
 }
 
 function renderProjects() {
   const grid = document.getElementById("projects-grid");
-  if (!grid || !window.projectsData) return;
+  if (!grid) {
+    warn("renderProjects: #projects-grid not found (ok on non-projects pages).");
+    return;
+  }
+
+  if (!Array.isArray(window.projectsData)) {
+    warn("renderProjects: window.projectsData missing or not an array.");
+    return;
+  }
 
   const filtered = window.projectsData.filter((p) => {
     if (activeFilter === "all") return true;
@@ -80,11 +149,14 @@ function renderProjects() {
 
   if (!filtered.length) {
     grid.innerHTML = `<p>No projects in this category yet.</p>`;
+    log("renderProjects: 0 projects for filter:", activeFilter);
     return;
   }
 
   grid.innerHTML = filtered.map(projectToCardHTML).join("");
   attachProjectCardHandlers(grid);
+
+  log("renderProjects: rendered", filtered.length, "projects for filter:", activeFilter);
 }
 
 // =========================
@@ -93,16 +165,23 @@ function renderProjects() {
 
 function initProjectFilters() {
   const buttons = document.querySelectorAll(".filter-btn");
-  if (!buttons.length) return;
+  if (!buttons.length) {
+    warn("initProjectFilters: no filter buttons found (ok on other pages).");
+    return;
+  }
 
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       buttons.forEach((b) => b.classList.remove("filter-btn--active"));
       btn.classList.add("filter-btn--active");
       activeFilter = btn.dataset.filter || "all";
+
+      log("Filter changed:", activeFilter);
       renderProjects();
     });
   });
+
+  log("initProjectFilters: ready with", buttons.length, "buttons");
 }
 
 // =========================
@@ -111,10 +190,21 @@ function initProjectFilters() {
 
 function openProjectModal(projectId) {
   const modal = document.getElementById("project-modal");
-  if (!modal || !window.projectsData) return;
+  if (!modal) {
+    warn("openProjectModal: #project-modal not found.");
+    return;
+  }
+
+  if (!Array.isArray(window.projectsData)) {
+    warn("openProjectModal: window.projectsData missing or not an array.");
+    return;
+  }
 
   const project = window.projectsData.find((p) => p.id === projectId);
-  if (!project) return;
+  if (!project) {
+    warn("openProjectModal: project not found for id:", projectId);
+    return;
+  }
 
   const lang = window.currentLanguage || "en";
   const title = project.title?.[lang] || project.title?.en || "Project";
@@ -152,11 +242,16 @@ function openProjectModal(projectId) {
 
   modal.classList.add("modal--open");
   modal.setAttribute("aria-hidden", "false");
+
+  log("openProjectModal: opened:", projectId);
 }
 
 function initModal() {
   const modal = document.getElementById("project-modal");
-  if (!modal) return;
+  if (!modal) {
+    warn("initModal: #project-modal not found (ok on other pages).");
+    return;
+  }
 
   const closeBtn = document.getElementById("project-modal-close");
   const backdrop = modal.querySelector(".modal__backdrop");
@@ -164,6 +259,7 @@ function initModal() {
   function close() {
     modal.classList.remove("modal--open");
     modal.setAttribute("aria-hidden", "true");
+    log("initModal: closed");
   }
 
   if (closeBtn) closeBtn.addEventListener("click", close);
@@ -172,6 +268,8 @@ function initModal() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") close();
   });
+
+  log("initModal: ready");
 }
 
 // =========================
@@ -181,17 +279,34 @@ function initModal() {
 function initContactForm() {
   const form = document.getElementById("contact-form");
   const statusEl = document.getElementById("contact-status");
-  if (!form || !statusEl) return;
+
+  if (!form || !statusEl) {
+    warn("initContactForm: form/status not found (ok on non-contact pages).");
+    return;
+  }
+
+  const submitBtn = form.querySelector('button[type="submit"]');
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    // Native HTML validation
     if (!form.checkValidity()) {
-      statusEl.textContent = getString("contact-validation");
+      statusEl.textContent = t("contact-validation", "Please fill in all required fields.");
+      // Show built-in browser validation UI
+      form.reportValidity?.();
+      warn("Contact form: validation failed");
       return;
     }
 
-    statusEl.textContent = getString("contact-sending");
+    // Lock button to prevent spam clicks
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.dataset.originalText = submitBtn.textContent;
+      submitBtn.textContent = t("contact-sending", "Sending...");
+    }
+
+    statusEl.textContent = t("contact-sending", "Sending...");
 
     const formData = new FormData(form);
     const payload = {
@@ -201,6 +316,15 @@ function initContactForm() {
       message: String(formData.get("message") || "").trim(),
     };
 
+    log("Contact form: submitting payload (sanitized):", {
+      name: payload.name,
+      email: payload.email,
+      subject: payload.subject,
+      messageLength: payload.message.length,
+    });
+
+    const startedAt = performance.now();
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -209,18 +333,32 @@ function initContactForm() {
       });
 
       const data = await res.json().catch(() => ({}));
+      const ms = Math.round(performance.now() - startedAt);
+
+      log("Contact form: response", { status: res.status, ok: res.ok, ms, data });
 
       if (!res.ok || !data.ok) {
-        throw new Error(data.error || "Contact request failed");
+        throw new Error(data.error || `Contact request failed (${res.status})`);
       }
 
-      statusEl.textContent = getString("contact-success");
+      statusEl.textContent = t("contact-success", "✅ Message sent successfully!");
       form.reset();
-    } catch (err) {
-      console.error("Contact form error:", err);
-      statusEl.textContent = getString("contact-error");
+      log("Contact form: success");
+    } catch (error) {
+      errLog("Contact form: failed", error);
+      statusEl.textContent = t(
+        "contact-error",
+        "❌ Could not send message. Please try again."
+      );
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtn.dataset.originalText || "Send message";
+      }
     }
   });
+
+  log("initContactForm: ready");
 }
 
 // =========================
@@ -229,34 +367,33 @@ function initContactForm() {
 
 function initScrollReveal() {
   const items = document.querySelectorAll(
-  ".project-card, .card, .section__header, .stats"
-);
-
+    ".project-card, .card, .section__header, .stats"
+  );
 
   if (!("IntersectionObserver" in window) || !items.length) {
-    items.forEach(el => el.classList.add("is-visible"));
+    items.forEach((el) => el.classList.add("is-visible"));
+    warn("initScrollReveal: IntersectionObserver missing or no items found.");
     return;
   }
 
   const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
+    (entries) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-visible");
           observer.unobserve(entry.target);
         }
       });
     },
-    {
-      threshold: 0.15,
-      rootMargin: "0px 0px -40px 0px"
-    }
+    { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
   );
 
-  items.forEach(el => {
+  items.forEach((el) => {
     el.classList.add("reveal");
     observer.observe(el);
   });
+
+  log("initScrollReveal: observing", items.length, "items");
 }
 
 // =========================
@@ -267,16 +404,24 @@ function initImageLightbox() {
   const lightbox = document.getElementById("image-lightbox");
   const lightboxImg = document.getElementById("lightbox-img");
   const closeBtn = document.getElementById("lightbox-close");
-  if (!lightbox || !lightboxImg || !closeBtn) return;
+
+  if (!lightbox || !lightboxImg || !closeBtn) {
+    warn("initImageLightbox: elements not found (ok on pages without modal).");
+    return;
+  }
 
   const backdrop = lightbox.querySelector(".image-lightbox__backdrop");
-  if (!backdrop) return;
+  if (!backdrop) {
+    warn("initImageLightbox: backdrop not found.");
+    return;
+  }
 
   function openLightbox(src, alt = "") {
     lightboxImg.src = src;
     lightboxImg.alt = alt;
     lightbox.classList.add("image-lightbox--open");
     lightbox.setAttribute("aria-hidden", "false");
+    log("Lightbox opened");
   }
 
   function closeLightbox() {
@@ -284,9 +429,10 @@ function initImageLightbox() {
     lightbox.setAttribute("aria-hidden", "true");
     lightboxImg.src = "";
     lightboxImg.alt = "";
+    log("Lightbox closed");
   }
 
-  // event delegation so it works for injected images
+  // Event delegation so it works for injected images
   document.addEventListener("click", (e) => {
     const img = e.target.closest(".modal-gallery-img");
     if (!img) return;
@@ -299,6 +445,8 @@ function initImageLightbox() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") closeLightbox();
   });
+
+  log("initImageLightbox: ready");
 }
 
 // =========================
@@ -306,7 +454,14 @@ function initImageLightbox() {
 // =========================
 
 document.addEventListener("DOMContentLoaded", () => {
-  if (typeof initLanguage === "function") initLanguage();
+  log("Boot: DOMContentLoaded");
+
+  if (typeof initLanguage === "function") {
+    initLanguage();
+    log("Language: initLanguage() called");
+  } else {
+    warn("Language: initLanguage() not found (lang.js not loaded?)");
+  }
 
   initNav();
   initYear();
@@ -319,6 +474,9 @@ document.addEventListener("DOMContentLoaded", () => {
   renderProjects();
   initScrollReveal();
 
-  // Debug (temporary): confirms projects data exists
-  console.log("projectsData length:", window.projectsData?.length);
+  if (Array.isArray(window.projectsData)) {
+    log("projectsData length:", window.projectsData.length);
+  } else {
+    warn("projectsData missing: window.projectsData is not an array (ok if not on projects pages).");
+  }
 });
