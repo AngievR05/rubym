@@ -18,7 +18,7 @@ const projectsData = [
   },
   location: "Bela Bela District",
   description: {
-    en: "Luxury vacation home featuring 5 bedrooms and 7 bathrooms, designed for comfortable large-group stays with expansive glazing, elevated views, and high-quality modern finishes.",
+    en: "Luxury vacation home featuring 6 bedrooms with en-suite bathrooms, designed for comfortable large-group stays with expansive glazing, elevated views, and high-quality modern finishes.",
     af: "Luukse vakansiehuis met 5 slaapkamers en 7 badkamers, ontwerp vir gemaklike grootgroep-verblyf met groot glasoppervlaktes, verhoogde uitsigte en moderne hoëgehalte afwerkings."
   },
   thumb: "img/Mabalingwe 1002 - 1.jpg",
