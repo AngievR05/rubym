@@ -21,12 +21,12 @@ const translations = {
     // Home / hero
     "hero-heading": "Luxury homes and lodges built to last.",
     "hero-sub":
-      "Ruby Mountain specialises in luxury construction, renovations and maintenance across Bela-Bela and surrounds.",
+      "Ruby Mountain Construction & Maintenance  specialises in luxury construction, renovations and maintenance across Bela-Bela and surrounds.",
     "hero-cta-primary": "Request a quote",
     "hero-cta-secondary": "View recent projects",
 
     // Home / about strip
-    "about-heading": "About Ruby Mountain",
+    "about-heading": "About Ruby Mountain Construction & Maintenance",
     "about-body":
       "With over 20 years of industry experience, Ruby Mountain Construction & Maintenance delivers new builds, alterations and ongoing maintenance for lodges and private homes.",
     "about-body-2":
@@ -41,7 +41,7 @@ const translations = {
     // Home / services teaser
     "services-heading": "What we do",
     "services-sub":
-      "From new luxury lodges to general maintenance, Ruby Mountain covers the full scope of construction services.",
+      "From new luxury lodges to general maintenance, Ruby Mountain Construction & Maintenance covers the full scope of construction services.",
 
     "service-construction-title": "Construction",
     "service-construction-body":
@@ -104,7 +104,7 @@ const translations = {
 
     "services-page-heading": "Construction services",
     "services-page-intro":
-      "Ruby Mountain offers a complete range of construction and maintenance services for private homes, lodges and commercial projects.",
+      "Ruby Mountain Construction & Maintenance offers a complete range of construction and maintenance services for private homes, lodges and commercial projects.",
 
     "services-prof-heading": "Professional services",
     "services-prof-intro":
@@ -125,7 +125,7 @@ const translations = {
     "about-experience-2":
       "He later joined the Mabalingwe Nature Reserve where he progressed to Construction and Maintenance Manager, overseeing the construction of private homes and lodges in the reserve.",
     "about-experience-3":
-      "After more than 12 years at Mabalingwe, Willem started his own company to focus on construction projects under the Ruby Mountain name.",
+      "After more than 12 years at Mabalingwe, Willem started his own company to focus on construction projects under the Ruby Mountain Construction & Maintenance name.",
 
     "about-company-heading": "Company information",
     "about-management-heading": "Management",
