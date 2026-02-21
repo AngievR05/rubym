@@ -272,98 +272,6 @@ function initModal() {
   log("initModal: ready");
 }
 
-// =========================
-// CONTACT FORM
-// =========================
-
-function initContactForm() {
-  const form = document.getElementById("contact-form");
-  const statusEl = document.getElementById("contact-status");
-
-  if (!form || !statusEl) {
-    warn("initContactForm: form/status not found (ok on non-contact pages).");
-    return;
-  }
-
-  const submitBtn = form.querySelector('button[type="submit"]');
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    // Native HTML validation
-    if (!form.checkValidity()) {
-      statusEl.textContent = t("contact-validation", "Please fill in all required fields.");
-      // Show built-in browser validation UI
-      form.reportValidity?.();
-      warn("Contact form: validation failed");
-      return;
-    }
-
-    // Lock button to prevent spam clicks
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.dataset.originalText = submitBtn.textContent;
-      submitBtn.textContent = t("contact-sending", "Sending...");
-    }
-
-    statusEl.textContent = t("contact-sending", "Sending...");
-
-    const formData = new FormData(form);
-    const payload = {
-  name: String(formData.get("name") || "").trim(),
-  email: String(formData.get("email") || "").trim(),
-  phone: String(formData.get("phone") || "").trim(),
-  subject: String(formData.get("subject") || "").trim(),
-  message: String(formData.get("message") || "").trim(),
-};
-
-
-    log("Contact form: submitting payload (sanitized):", {
-      name: payload.name,
-      email: payload.email,
-      subject: payload.subject,
-      messageLength: payload.message.length,
-    });
-
-    const startedAt = performance.now();
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await res.json().catch(() => ({}));
-      const ms = Math.round(performance.now() - startedAt);
-
-      log("Contact form: response", { status: res.status, ok: res.ok, ms, data });
-
-      if (!res.ok || !data.ok) {
-        throw new Error(data.error || `Contact request failed (${res.status})`);
-      }
-
-      statusEl.textContent = t("contact-success", "✅ Message sent successfully!");
-      form.reset();
-      log("Contact form: success");
-    } catch (error) {
-      errLog("Contact form: failed", error);
-      statusEl.textContent = t(
-        "contact-error",
-        "❌ Could not send message. Please try again."
-      );
-    } finally {
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.textContent = submitBtn.dataset.originalText || "Send message";
-      }
-    }
-  });
-
-  log("initContactForm: ready");
-}
-
-// =========================
 // SCROLL REVEAL (PROJECT CARDS)
 // =========================
 
@@ -470,7 +378,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initProjectFilters();
   initModal();
   initImageLightbox();
-  initContactForm();
 
   renderHomeProjects();
   renderProjects();
