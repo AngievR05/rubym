@@ -161,22 +161,6 @@ const translations = {
 "contact-map-heading": "Map",
 "contact-map-placeholder": "Map placeholder – Google Maps embed",
 
-"contact-form-heading": "Send a message",
-"contact-form-helper":
-  "You can tell us about a new build, renovations, maintenance work or ask to arrange a site visit.",
-"contact-name-label": "Name *",
-"contact-email-label": "Email *",
-"contact-subject-label": "Subject",
-"contact-message-label": "Message *",
-"contact-send-button": "Send message",
-
-
-    // Contact form status messages
-    "contact-validation": "Please fill in all required fields.",
-    "contact-sending": "Sending…",
-    "contact-success": "Thank you, we have received your message.",
-    "contact-error":
-      "Something went wrong. Please phone or email us directly."
   },
 
   af: {
@@ -334,23 +318,6 @@ const translations = {
 "contact-map-heading": "Kaart",
 "contact-map-placeholder": "Kaart-plekhouer – Google Maps-insluiting",
 
-"contact-form-heading": "Stuur ’n boodskap",
-"contact-form-helper":
-  "Jy kan vir ons vertel van ’n nuwe bouprojek, aanbouing, instandhoudingswerk of vra dat ons ’n terreinbesoek reël.",
-"contact-name-label": "Naam *",
-"contact-email-label": "E-pos *",
-"contact-subject-label": "Onderwerp",
-"contact-message-label": "Boodskap *",
-"contact-send-button": "Stuur boodskap",
-
-
-    // Contact form status messages
-    "contact-validation": "Voltooi asseblief al die verpligte velde.",
-    "contact-sending": "Stuur tans…",
-    "contact-success":
-      "Dankie, ons het jou boodskap ontvang.",
-    "contact-error":
-      "Iets het fout gegaan. Kontak ons asseblief per foon of e-pos."
   }
 };
 
