@@ -57,7 +57,7 @@
 
   <main>
     <section class="section section--light">
-      <div class="section__inner section__inner--split">
+      <div class="section__inner section__inner--narrow">
         <!-- ADDRESS / MAP -->
         <div class="section__block">
           <h1 data-i18n="contact-page-heading">Contact us</h1>
@@ -92,44 +92,6 @@
           </div>
         </div>
 
-        <!-- CONTACT FORM -->
-        <div class="section__block">
-          <h2 data-i18n="contact-form-heading">Send a message</h2>
-          <p data-i18n="contact-form-helper">
-            You can tell us about a new build, renovations, maintenance work or ask to arrange a site visit.
-          </p>
-
-          <form id="contact-form" class="card" novalidate>
-            <div class="form-group">
-              <label for="name" data-i18n="contact-name-label">Name *</label>
-              <input id="name" name="name" type="text" required />
-            </div>
-
-            <div class="form-group">
-              <label for="email" data-i18n="contact-email-label">Email *</label>
-              <input id="email" name="email" type="email" required />
-            </div>
-            
-            <div class="form-group">
-              <label for="phone" data-i18n="contact-phone-label">Contact number *</label>
-                <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required />
-            </div>
-
-
-            <div class="form-group">
-              <label for="subject" data-i18n="contact-subject-label">Subject</label>
-              <input id="subject" name="subject" type="text" />
-            </div>
-
-            <div class="form-group">
-              <label for="message" data-i18n="contact-message-label">Message *</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-
-            <button type="submit" class="btn btn--primary" data-i18n="contact-send-button">Send message</button>
-            <p id="contact-status" class="form-status" aria-live="polite"></p>
-          </form>
-        </div>
       </div>
     </section>
   </main>
